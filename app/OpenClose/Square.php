@@ -2,7 +2,7 @@
 
 namespace OpenClose;
 
-class Square
+class Square implements Shape
 {
     public int $height;
     public int $width;
@@ -11,5 +11,10 @@ class Square
     {
         $this->height = $height;
         $this->width = $width;
+    }
+
+    public function area(): float|int
+    {
+        return $this->height * $this->width;
     }
 }
