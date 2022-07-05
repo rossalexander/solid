@@ -4,12 +4,18 @@ namespace OpenClose;
 
 class AreaCalculator
 {
-    public function calculate($squares): float|int
+    public function calculate($shapes): float|int
     {
         $area = [];
-        foreach ($squares as $square) {
-            $area[] = $square->height * $square->width;
+
+        foreach ($shapes as $shape) {
+            if (is_a($shape, Square::class)) {
+                $area[] = $shape->height * $shape->width;
+            } else {
+                $area[] = $shape->radius * $shape->radius * pi();
+            }
         }
+
         return array_sum($area);
     }
 }
