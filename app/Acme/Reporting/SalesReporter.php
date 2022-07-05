@@ -1,36 +1,25 @@
-<?php namespace Acme\Reporting;
+<?php
 
-use Exception;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+namespace Acme\Reporting;
+
+use Acme\Reporting\Output\SalesOutputInterface;
+use Acme\Repositories\SalesRepository;
 
 class SalesReporter
 {
-    /**
-     * @throws Exception
-     * @throws Exception
-     */
-    public function between($startDate, $endDate)
-    {
-        // perform authentication
-//        if (!Auth::check()) throw new Exception('You are not authenticated');
+    private SalesRepository $repository;
 
+    public function __construct(SalesRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function between($startDate, $endDate, SalesOutputInterface $formatter): void
+    {
         // get sales from database
-        $sales = $this->queryDBForSalesBetween($startDate, $endDate);
+        $sales = $this->repository->between($startDate, $endDate);
 
         // return results
-        return $this->format($sales);
-    }
-
-    protected function queryDBForSalesBetween($startDate, $endDate)
-    {
-        // query database
-        return DB::table('sales')->whereBetween('created_at', [$startDate, $endDate])->sum('charge') / 100;
-    }
-
-    protected function format($sales)
-    {
-        // format results
-        return "<h1>Sales: $sales</h1>";
+        $formatter->output($sales);
     }
 }
