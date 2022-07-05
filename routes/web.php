@@ -1,8 +1,9 @@
 <?php
 
-use Acme\Reporting\Output\HTMLOutput;
-use Acme\Reporting\Output\JSONOutput;
-use Acme\Repositories\SalesRepository;
+use SRP\Reporting\Output\HTMLOutput;
+use SRP\Reporting\Output\JSONOutput;
+use SRP\Reporting\SalesReporter;
+use SRP\Repositories\SalesRepository;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,7 +19,7 @@ Route::get('/sales', function () {
 //        return redirect('/login');
 //    }
 
-    $report = new Acme\Reporting\SalesReporter(new SalesRepository);
+    $report = new SalesReporter(new SalesRepository);
 
     $begin = Carbon\Carbon::now()->subDays(10);
     $end = Carbon\Carbon::now();

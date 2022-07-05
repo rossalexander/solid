@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Reporting\Output;
+namespace SRP\Reporting\Output;
 
 interface SalesOutputInterface
 {

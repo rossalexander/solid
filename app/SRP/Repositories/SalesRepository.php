@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Repositories;
+namespace SRP\Repositories;
 
 use Illuminate\Support\Facades\DB;
 

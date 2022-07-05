@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\Reporting;
+namespace SRP\Reporting;
 
-use Acme\Reporting\Output\SalesOutputInterface;
-use Acme\Repositories\SalesRepository;
+use SRP\Reporting\Output\SalesOutputInterface;
+use SRP\Repositories\SalesRepository;
 
 class SalesReporter
 {
